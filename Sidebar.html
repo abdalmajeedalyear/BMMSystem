@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بناء ستور · شريط جانبي ميني</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, #1a1c2c 0%, #2a2f4b 100%);
+            display: flex;
+        }
+        
+        /* ===== شريط جانبي ميني ===== */
+        .mini-sidebar {
+            width: 100px;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 24px 0;
+            gap: 30px;
+            box-shadow: 20px 0 30px -10px rgba(0, 0, 0, 0.2);
+            position: relative;
+            transition: width 0.3s ease;
+            border-radius: 0 30px 30px 0;
+        }
+        
+        .mini-sidebar:hover {
+            width: 280px;
+            align-items: flex-start;
+            padding: 24px 16px;
+        }
+        
+        /* الشعار في الوضع المطوي */
+        .mini-logo {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: 900;
+            box-shadow: 0 10px 20px -5px rgba(102, 126, 234, 0.5);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .mini-sidebar:hover .mini-logo {
+            width: 100%;
+            border-radius: 14px;
+            justify-content: flex-start;
+            padding: 0 20px;
+            gap: 12px;
+        }
+        
+        .logo-text {
+            display: none;
+            font-size: 20px;
+            font-weight: 900;
+            color: white;
+        }
+        
+        .mini-sidebar:hover .logo-text {
+            display: block;
+        }
+        
+        /* عناصر القائمة */
+        .mini-nav {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .mini-nav-item {
+            width: 60px;
+            height: 60px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4a5568;
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+        
+        .mini-sidebar:hover .mini-nav-item {
+            width: 100%;
+            justify-content: flex-start;
+            padding: 0 20px;
+            gap: 16px;
+        }
+        
+        .mini-nav-item:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .mini-nav-item.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 10px 20px -5px rgba(102, 126, 234, 0.5);
+        }
+        
+        .nav-icon {
+            font-size: 24px;
+        }
+        
+        .nav-text {
+            display: none;
+            font-size: 15px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        
+        .mini-sidebar:hover .nav-text {
+            display: block;
+        }
+        
+        /* التولتيب عند التحويم */
+        .mini-nav-item[data-tooltip] {
+            position: relative;
+        }
+        
+        .mini-nav-item[data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            right: 70px;
+            background: #1a1c2c;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            white-space: nowrap;
+            z-index: 100;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .mini-sidebar:hover .mini-nav-item[data-tooltip]:hover::after {
+            display: none;
+        }
+        
+        /* الملف الشخصي المصغر */
+        .mini-profile {
+            margin-top: auto;
+            width: 60px;
+            height: 60px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            font-weight: 700;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .mini-sidebar:hover .mini-profile {
+            width: 100%;
+            border-radius: 18px;
+            justify-content: flex-start;
+            padding: 0 20px;
+            gap: 12px;
+        }
+        
+        .profile-text {
+            display: none;
+            font-size: 15px;
+            font-weight: 600;
+        }
+        
+        .mini-sidebar:hover .profile-text {
+            display: block;
+        }
+        
+        .online-indicator {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            width: 10px;
+            height: 10px;
+            background: #10b981;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+        
+        .mini-sidebar:hover .online-indicator {
+            right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- الشريط الجانبي الميني -->
+    <aside class="mini-sidebar">
+        <!-- الشعار -->
+        <div class="mini-logo">
+            <span>ب</span>
+            <span class="logo-text">بناء ستور</span>
+        </div>
+        
+        <!-- القائمة -->
+        <nav class="mini-nav">
+            <div class="mini-nav-item active" data-tooltip="لوحة التحكم">
+                <span class="nav-icon">📊</span>
+                <span class="nav-text">لوحة التحكم</span>
+            </div>
+            <div class="mini-nav-item" data-tooltip="المخزون">
+                <span class="nav-icon">📦</span>
+                <span class="nav-text">المخزون</span>
+            </div>
+            <div class="mini-nav-item" data-tooltip="المبيعات">
+                <span class="nav-icon">🛒</span>
+                <span class="nav-text">المبيعات</span>
+            </div>
+            <div class="mini-nav-item" data-tooltip="الموظفين">
+                <span class="nav-icon">👥</span>
+                <span class="nav-text">الموظفين</span>
+            </div>
+            <div class="mini-nav-item" data-tooltip="الموردين">
+                <span class="nav-icon">🤝</span>
+                <span class="nav-text">الموردين</span>
+            </div>
+            <div class="mini-nav-item" data-tooltip="التقارير">
+                <span class="nav-icon">📈</span>
+                <span class="nav-text">التقارير</span>
+            </div>
+            <div class="mini-nav-item" data-tooltip="الإعدادات">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-text">الإعدادات</span>
+            </div>
+        </nav>
+        
+        <!-- الملف الشخصي -->
+        <div class="mini-profile">
+            <span>أ</span>
+            <span class="profile-text">أحمد محمد</span>
+            <span class="online-indicator"></span>
+        </div>
+    </aside>
+    
+    <main style="flex: 1; padding: 40px; color: white;">
+        <h1 style="font-size: 36px;">شريط جانبي ميني</h1>
+        <p style="margin-top: 20px;">مرر الماوس على الشريط الجانبي لتوسيعه وعرض النصوص</p>
+    </main>
+</body>
+</html>

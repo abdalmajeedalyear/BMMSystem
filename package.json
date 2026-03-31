@@ -1,0 +1,19 @@
+{
+  "name": "bmm-system",
+  "main": "BMMSystem/index.php",
+  "window": {
+    "title": "نظام إدارة المخازن - BMM System",
+    "icon": "icon.png",
+    "width": 1280,
+    "height": 720,
+    "min_width": 1024,
+    "min_height": 600,
+    "position": "center",
+    "frame": true,
+    "toolbar": true,
+    "fullscreen": false
+  },
+  "webkit": {
+    "plugin": true
+  }
+}
