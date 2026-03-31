@@ -859,6 +859,9 @@ $today_date = date('Y-m-d');
                                 <i class="fas fa-sticky-note" style="color: #2196F3;"></i>
                                 ملاحظات
                             </label>
+                            
+
+                            
                             <textarea name="notes" rows="4" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:4px;" placeholder="أدخل أي ملاحظات إضافية..."></textarea>
                         </div>
                         
