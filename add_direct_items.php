@@ -1,7 +1,7 @@
 <?php
 session_start();
 include "config.php";
-
+//تعليق الاتصال بقاعدة البيانات في ملف config.php
 // ==================== جلب قائمة الموردين ====================
 $suppliers_list = $conn->query("SELECT supplier_id, supplier_name FROM suppliers ORDER BY supplier_name ASC");
 
