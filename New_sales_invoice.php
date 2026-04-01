@@ -290,7 +290,11 @@ $today_date = date('Y-m-d');
             border: 1px solid #ddd; 
             padding: 8px; 
         }
-        
+        td:nth-child(2) {
+            width: 30%;
+            border: 1px solid #ddd; 
+            padding: 8px; 
+        }
         input, select { 
             width: 100%; 
             padding: 8px; 
@@ -419,7 +423,8 @@ $today_date = date('Y-m-d');
         
         /* الاقتراحات */
         .autocomplete-wrapper { 
-            position: relative; 
+            position: relative;
+             
         }
         
         .autocomplete-dropdown {
